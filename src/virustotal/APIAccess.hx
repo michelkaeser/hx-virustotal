@@ -14,6 +14,13 @@ import virustotal.Response;
 class APIAccess
 {
     /**
+     * Stores the base URL used to access the API.
+     *
+     * @var String
+     */
+    private static inline var BASE_URL:String = "https://www.virustotal.com/vtapi/v2/";
+
+    /**
      * Stores the VirusTotal API key.
      *
      * @var String
@@ -32,31 +39,38 @@ class APIAccess
     }
 
     /**
-     * Performs an API access request.
+     * Sends the HTTP request to the API.
      *
      * @param Haxe.Http http the HTTP context to issue the request with
+     * @param Bool      post if true, a POST request is performed
      *
      * @return virustotal.Response
      */
-    private function perform(http:Http):Response
+    private function sendRequest(http:Http, post:Bool = false):Response
     {
+        http.cnxTimeout = 120.0;
+        http.setHeader("Accept", "application/json");
+        http.setHeader("Expect", ""); // no Expect 100-continue
         http.setParameter("apikey", this.key);
 
-        var response = { data: null, status: 0, error: null };
+        var buffer:StringBuf = new StringBuf();
         http.onData = function(data:String):Void
         {
-            response.data = data;
+            buffer.addSub(data, 0);
         }
+        var _error:Null<String> = null;
         http.onError = function(error:String):Void
         {
-            response.error = error;
+            _error = error;
         }
+        var _status:Int = 0;
         http.onStatus = function(status:Int):Void
         {
-            response.status = status;
+            _status = status;
         }
-        http.request(true);
 
-        return new Response(response.data, response.status, response.error);
+        http.request(post);
+
+        return new Response(buffer.toString(), _status, _error);
     }
 }

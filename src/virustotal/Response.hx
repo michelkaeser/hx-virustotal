@@ -38,7 +38,7 @@ class Response
      */
     public function new(data:Null<String>, status:Int, error:Null<String>):Void
     {
-        if (data == null) {
+        if (data == null || data.length == 0) {
             this.data = null;
         } else {
             this.data = Json.parse(data);

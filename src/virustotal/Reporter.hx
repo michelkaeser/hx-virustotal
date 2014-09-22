@@ -29,10 +29,10 @@ class Reporter extends APIAccess
      */
     public function retrieveDomainReport(domain:String):Response
     {
-        var http:Http = new Http("http://www.virustotal.com/vtapi/v2/domain/report");
+        var http:Http = new Http(APIAccess.BASE_URL + "domain/report");
         http.setParameter("domain", domain);
 
-        return this.perform(http);
+        return this.sendRequest(http);
     }
 
     /**
@@ -44,10 +44,10 @@ class Reporter extends APIAccess
      */
     public function retrieveFileReport(response:Response):Response
     {
-        var http:Http = new Http("https://www.virustotal.com/vtapi/v2/file/report");
-        http.setParameter("resource", Reflect.field(response.data, "resource"));
+        var http:Http = new Http(APIAccess.BASE_URL + "file/report");
+        http.setParameter("resource", response.get("resource"));
 
-        return this.perform(http);
+        return this.sendRequest(http, true);
     }
 
     /**
@@ -59,10 +59,10 @@ class Reporter extends APIAccess
      */
     public function retrieveIpReport(ip:String):Response
     {
-        var http:Http = new Http("http://www.virustotal.com/vtapi/v2/ip-address/report");
+        var http:Http = new Http(APIAccess.BASE_URL + "ip-address/report");
         http.setParameter("ip", ip);
 
-        return this.perform(http);
+        return this.sendRequest(http);
     }
 
     /**
@@ -74,9 +74,9 @@ class Reporter extends APIAccess
      */
     public function retrieveUrlReport(response:Response):Response
     {
-        var http:Http = new Http("http://www.virustotal.com/vtapi/v2/url/report");
-        http.setParameter("resource", Reflect.field(response.data, "resource"));
+        var http:Http = new Http(APIAccess.BASE_URL + "url/report");
+        http.setParameter("resource", response.get("resource"));
 
-        return this.perform(http);
+        return this.sendRequest(http, true);
     }
 }

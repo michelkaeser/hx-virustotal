@@ -41,10 +41,10 @@ class Scanner extends APIAccess
         public function submitFile(file:File):Response
         {
             if (file.exists()) {
-                var http:Http = new Http("https://www.virustotal.com/vtapi/v2/file/scan");
+                var http:Http = new Http(APIAccess.BASE_URL + "file/scan");
                 http.fileTransfert("file", file.name, file.read(), file.size);
 
-                return this.perform(http);
+                return this.sendRequest(http, true);
             }
 
             throw new FileNotFoundException("File to upload does not exist");
@@ -60,9 +60,9 @@ class Scanner extends APIAccess
      */
     public function submitUrl(url:String):Response
     {
-        var http:Http = new Http("https://www.virustotal.com/vtapi/v2/url/scan");
+        var http:Http = new Http(APIAccess.BASE_URL + "url/scan");
         http.setParameter("url", url);
 
-        return this.perform(http);
+        return this.sendRequest(http, true);
     }
 }
