@@ -48,7 +48,6 @@ class APIAccess
      */
     private function sendRequest(http:Http, post:Bool = false):Response
     {
-        http.cnxTimeout = 120.0;
         http.setHeader("Accept", "application/json");
         http.setHeader("Expect", ""); // no Expect 100-continue
         http.setParameter("apikey", this.key);
