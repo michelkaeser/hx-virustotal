@@ -47,7 +47,7 @@ class Scanner extends APIAccess
                 return this.sendRequest(http, true);
             }
 
-            throw new FileNotFoundException("File to upload does not exist");
+            throw new FileNotFoundException("File to upload does not exist.");
         }
     #end
 

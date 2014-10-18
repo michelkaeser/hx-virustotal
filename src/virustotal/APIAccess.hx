@@ -55,7 +55,7 @@ class APIAccess
         var buffer:StringBuf = new StringBuf();
         http.onData = function(data:String):Void
         {
-            buffer.addSub(data, 0);
+            buffer.add(data);
         }
         var _error:Null<String> = null;
         http.onError = function(error:String):Void

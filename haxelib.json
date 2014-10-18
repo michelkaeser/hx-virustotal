@@ -6,6 +6,7 @@
     "description": "Haxe package to communicate with the VirusTotal API.",
     "classPath": "src",
     "dependencies": {
+        "hxssl": "",
         "lib": ""
     },
     "version": "0.0.0",
