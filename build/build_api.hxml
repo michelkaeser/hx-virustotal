@@ -2,7 +2,7 @@
 --next
 -cp  src
 -cpp bin/cpp
--lib lib
+-lib hext-core
 -xml bin/cpp.xml
 --macro "include('virustotal')"
 --no-output
@@ -11,7 +11,7 @@
 --next
 -cp  src
 -cs  bin/cs
--lib lib
+-lib hext-core
 -xml bin/cs.xml
 --macro "include('virustotal')"
 --no-output
@@ -20,7 +20,7 @@
 --next
 -cp   src
 -java bin/java
--lib  lib
+-lib  hext-core
 -xml  bin/java.xml
 --macro "include('virustotal')"
 --no-output
@@ -29,7 +29,7 @@
 --next
 -cp  src
 -js  bin/main.js
--lib lib
+-lib hext-core
 -xml bin/js.xml
 --macro "include('virustotal')"
 --no-output
@@ -38,7 +38,7 @@
 --next
 -cp   src
 -neko bin/main.n
--lib  lib
+-lib  hext-core
 -xml  bin/neko.xml
 --macro "include('virustotal')"
 --no-output
@@ -47,7 +47,7 @@
 --next
 -cp   src
 -neko bin/php
--lib  lib
+-lib  hext-core
 -xml  bin/php.xml
 --macro "include('virustotal')"
 --no-output

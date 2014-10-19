@@ -2,14 +2,14 @@ package virustotal;
 
 import haxe.Http;
 #if sys
-    import lib.io.File;
-    import lib.io.FileNotFoundException;
+    import hext.io.File;
+    import hext.io.FileNotFoundException;
 #end
 import virustotal.APIAccess;
 import virustotal.Response;
 
 #if sys
-    using lib.io.FileTools;
+    using hext.io.FileTools;
 #end
 
 /**
@@ -32,11 +32,11 @@ class Scanner extends APIAccess
         /**
          * Submits a scan request for the passed file.
          *
-         * @param lib.io.File file the file to scan
+         * @param hext.io.File file the file to scan
          *
          * @return virustotal.Response
          *
-         * @throws lib.io.FileNotFoundException when the file does not exist
+         * @throws hext.io.FileNotFoundException when the file does not exist
          */
         public function submitFile(file:File):Response
         {
